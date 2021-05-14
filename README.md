@@ -12,26 +12,7 @@
 | first_name_kana      | string | null: false               |
 | last_name_kana       | string | null: false               |
 | birth                | date   | null: false               |
-
-  t.string :email,              null: false, default: ""
-  t.string :encrypted_password, null: false, default: ""
-  t.string :nickname,           null: false, default: ""
-  t.string :first_name,         null: false, default: ""
-  t.string :last_name,          null: false, default: ""
-  t.string :first_name_kana,    null: false, default: ""
-  t.string :last_name_kana,     null: false, default: ""
-  t.date   :birth,              null: false, default: ""
-
-  validates :nickname,           presence: true
-  validates :email,              presence: true
-  validates :encrypted_password, presence: true
-  validates :first_name,         presence: true
-  validates :last_name,          presence: true
-  validates :first_name_kana,    presence: true
-  validates :last_name_kana,     presence: true
-  validates :birth,              presence: true      
-
- 
+  
 
 ### Association
 
@@ -84,4 +65,3 @@
 - belongs_to :user
 - belongs_to :item
 - has_one :pay_form
-
