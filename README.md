@@ -12,6 +12,7 @@
 | first_name_kana      | string | null: false               |
 | last_name_kana       | string | null: false               |
 | birth                | date   | null: false               |
+  
 
 ### Association
 
@@ -64,4 +65,3 @@
 - belongs_to :user
 - belongs_to :item
 - has_one :pay_form
-
