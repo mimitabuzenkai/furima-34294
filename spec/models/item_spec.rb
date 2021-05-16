@@ -2,7 +2,6 @@ require 'rails_helper'
 
 RSpec.describe Item, type: :model do
   before do
-    @user = FactoryBot.build(:user)
     @item = FactoryBot.build(:item)
   end
 
@@ -24,37 +23,37 @@ RSpec.describe Item, type: :model do
       end
 
       it 'カテゴリーの選択が必須' do
-        @item.category_id = "2"
+        @item.category_id = 2
         expect(@item).to be_valid
       end
 
       it '商品状態の選択が必須' do
-        @item.sales_status_id = "2"
+        @item.sales_status_id = 2
         expect(@item).to be_valid
       end
 
       it '発送日数の選択が必須' do
-        @item.delivery_charge_id = "2"
+        @item.delivery_charge_id = 2
         expect(@item).to be_valid
       end
 
       it '発送元の選択が必須' do
-        @item.prefecture_id = "2"
+        @item.prefecture_id = 2
         expect(@item).to be_valid
       end
 
       it '販売価格の入力が必須' do
-        @item.price = "3000"
+        @item.price = 3000
         expect(@item).to be_valid
       end
 
       it '販売価格が¥300~¥10,000,000の間なら保存できる' do
-        @item.price = "1000"
+        @item.price = 1000
         expect(@item).to be_valid
       end
 
       it '販売価格が半角数字なら保存できる' do
-        @item.price = "1000"
+        @item.price = 1000
         expect(@item).to be_valid
       end
     end
@@ -80,25 +79,25 @@ RSpec.describe Item, type: :model do
       end
 
       it 'カテゴリーの選択が無いと登録できない' do
-        @item.category_id = "1"
+        @item.category_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include("Category must be other than 1")
       end
 
       it '商品状態の選択が無いと登録できない' do
-        @item.sales_status_id = "1"
+        @item.sales_status_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include("Sales status must be other than 1")
       end
 
       it '発送日数の選択が無いと登録できない' do
-        @item.scheduled_delivery_id = "1"
+        @item.scheduled_delivery_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include("Scheduled delivery must be other than 1")
       end
 
       it '発送元の選択が無いと登録できない' do
-        @item.delivery_charge_id = "1"
+        @item.delivery_charge_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include("Delivery charge must be other than 1")
       end
@@ -110,19 +109,25 @@ RSpec.describe Item, type: :model do
       end
 
       it '販売価格が¥300より少ない時は出品できない' do
-        @item.price = "299"
+        @item.price = 299
         @item.valid?
         expect(@item.errors.full_messages).to include("Price must be greater than 300")
       end
 
       it '販売価格が、¥9,999,999より多い時は出品できない' do
-        @item.price = "10000000"
+        @item.price = 10000000
         @item.valid?
         expect(@item.errors.full_messages).to include("Price must be less than 10000000")
       end
 
-      it '販売価格が半角数字以外では出品できない' do
-        @item.price = "４!お阿オｵ"
+      it '販売価格が英字では出品できない' do
+        @item.price = "aaaAAA"
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Price is not a number")
+      end
+
+      it '販売価格が漢字・ひらがな・カタカナでは出品できない' do
+        @item.price = "あ阿カ"
         @item.valid?
         expect(@item.errors.full_messages).to include("Price is not a number")
       end
