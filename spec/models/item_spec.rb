@@ -37,7 +37,7 @@ RSpec.describe Item, type: :model do
         expect(@item).to be_valid
       end
 
-      it '発送元の選択が必須' do
+      it '発送元（地域）の選択が必須' do
         @item.prefecture_id = 2
         expect(@item).to be_valid
       end
@@ -96,10 +96,10 @@ RSpec.describe Item, type: :model do
         expect(@item.errors.full_messages).to include("Scheduled delivery must be other than 1")
       end
 
-      it '発送元の選択が無いと登録できない' do
-        @item.delivery_charge_id = 1
+      it '発送元（地域）の選択が無いと登録できない' do
+        @item.prefecture_id = 1
         @item.valid?
-        expect(@item.errors.full_messages).to include("Delivery charge must be other than 1")
+        expect(@item.errors.full_messages).to include("Prefecture must be other than 1")
       end
 
       it '販売価格の入力が無いと登録できない' do
