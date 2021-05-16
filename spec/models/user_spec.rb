@@ -12,13 +12,6 @@ RSpec.describe User, type: :model do
         @user.email = 'hoge@example.com'
         expect(@user).to be_valid
       end
-
-      it 'メールアドレスが他のユーザーと違う場合、登録できる' do
-        @user.save
-        another_user = FactoryBot.build(:user)
-        another_user.email != @user.email
-        expect(@user).to be_valid
-      end
       
       it 'パスワードの入力が必須' do
         @user.password = 'aaa000'
