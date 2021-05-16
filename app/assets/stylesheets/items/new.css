@@ -72,11 +72,7 @@
 
 /* /共通 */
 
-
-/* 商品画像 */
-
 /* 出品画像 */
-
 .img-upload {
   display: flex;
   justify-content: space-between;
@@ -92,8 +88,6 @@
 .click-upload>p {
   margin-bottom: 15px;
 }
-
-/* /商品画像 */
 
 /* /出品画像 */
 
