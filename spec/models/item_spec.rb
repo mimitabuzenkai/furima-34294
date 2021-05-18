@@ -32,8 +32,13 @@ RSpec.describe Item, type: :model do
         expect(@item).to be_valid
       end
 
-      it '発送日数の選択が必須' do
+      it '配達料の選択が必須' do
         @item.delivery_charge_id = 2
+        expect(@item).to be_valid
+      end
+
+      it '発送日数の選択が必須' do
+        @item.scheduled_delivery_id = 2
         expect(@item).to be_valid
       end
 
@@ -88,6 +93,12 @@ RSpec.describe Item, type: :model do
         @item.sales_status_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include("Sales status must be other than 1")
+      end
+
+      it '配達料の選択が無いと登録できない' do
+        @item.delivery_charge_id = 1
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Scheduled delivery must be other than 1")
       end
 
       it '発送日数の選択が無いと登録できない' do
