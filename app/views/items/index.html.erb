@@ -13,7 +13,6 @@
       フリマアプリです
     </p>
     <div class='store-btn'>
-      <%#= link_to image_tag("https://linkmaker.itunes.apple.com/ja-jp/badge-lrg.svg?releaseDate=2011-09-21&kind=iossoftware&bubble=ios_apps", class:"apple-btn"), "#" %>
       <%= link_to image_tag("https://linkmaker.itunes.apple.com/ja-jp/badge-lrg.svg?releaseDate=2011-09-21&kind=iossoftware&bubble=ios_apps", class:"apple-btn"), "#" %>
       <%= link_to image_tag("dl-android.png", class:"google-btn"), "#" %>
     </div>
@@ -130,7 +129,7 @@
     <% if @items[0] != nil %>
        <% @items.each do |item| %>
        <li class='list'>
-        <%= link_to "#" do %>
+        <%= link_to item_path(item.id), method: :get do %>
       　  <div class='item-img-content'>
           <%= image_tag item.image, class: "item-img" %>
 
@@ -160,7 +159,7 @@
     <% else %>
 
         <li class='list'>
-        <%= link_to '#' do %>
+        <%= link_to "#", method: :get do %>
         <%= image_tag "https://tech-master.s3.amazonaws.com/uploads/curriculums/images/Rails1-4/sample.jpg", class: "item-img" %>
         <div class='item-info'>
           <h3 class='item-name'>
