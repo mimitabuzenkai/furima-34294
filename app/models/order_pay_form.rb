@@ -1,6 +1,6 @@
 class OrderPayForm
   include ActiveModel::Model
-  attr_accessor :postal_code, :prefecture_id, :city, :addresses, :building, :phone_number, :user_id, :item_id, :order_id, :image, :token
+  attr_accessor :postal_code, :prefecture_id, :city, :addresses, :building, :phone_number, :user_id, :item_id, :image, :token
 
   with_options presence: true do
     validates :postal_code

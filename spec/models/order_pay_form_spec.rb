@@ -28,6 +28,11 @@ RSpec.describe OrderPayForm, type: :model do
         expect(@order_pay_form).to be_valid
       end
 
+      it '建物名が空でも購入できる。' do
+        @order_pay_form.building = ""
+        expect(@order_pay_form).to be_valid
+      end
+
       it '電話番号の入力が必須' do
         @order_pay_form.phone_number = "09012345678"
         expect(@order_pay_form).to be_valid
@@ -76,6 +81,24 @@ RSpec.describe OrderPayForm, type: :model do
         @order_pay_form.phone_number = "090123456789123"
         @order_pay_form.valid?
         expect(@order_pay_form.errors.full_messages).to include("Phone number is invalid")
+      end
+
+      it 'user_idが空だと購入できない' do
+        @order_pay_form.user_id = nil
+        @order_pay_form.valid?
+        expect(@order_pay_form.errors.full_messages).to include("User can't be blank")
+      end
+
+      it 'item_idが空だと購入できない' do
+        @order_pay_form.item_id = nil
+        @order_pay_form.valid?
+        expect(@order_pay_form.errors.full_messages).to include("Item can't be blank")
+      end
+
+      it 'tokenが空だと購入できない' do
+        @order_pay_form.token = nil
+        @order_pay_form.valid?
+        expect(@order_pay_form.errors.full_messages).to include("Token can't be blank")
       end
     end
   end
