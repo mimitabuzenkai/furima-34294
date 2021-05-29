@@ -6,24 +6,10 @@ class OrdersController < ApplicationController
 
   def index
     @order_pay_form = OrderPayForm.new
-    # @item = Item.find(params[:item_id])
-
-    # if current_user.id == @item.user.id
-    #   redirect_to root_path and return
-    # end
-
-    # if user_signed_in? && @item.order.present?
-    #   redirect_to root_path and return
-    # end
-
-    # if @item.order.present?
-    #   redirect_to root_path and return
-    # end
   end
 
   def create
     @order_pay_form = OrderPayForm.new(order_params)
-    # @item = Item.find(params[:item_id])
     if @order_pay_form.valid?
       pay_item
       @order_pay_form.save
@@ -31,12 +17,7 @@ class OrdersController < ApplicationController
     else
       render :index
     end
-
-    # if current_user.id == @item.user.id
-    #   redirect_to root_path and return
-    # end
   end
-
 
   private
 
@@ -62,6 +43,5 @@ class OrdersController < ApplicationController
       redirect_to root_path and return
     end
   end
-
 end
 
