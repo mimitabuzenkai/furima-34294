@@ -60,6 +60,24 @@ RSpec.describe OrderPayForm, type: :model do
         expect(@order_pay_form.errors.full_messages).to include('Postal code is invalid. Include hyphen(-)')
       end
 
+      it '郵便番号が漢字・ひらがな・カタカナでは登録できない。' do
+        @order_pay_form.postal_code = 'あ阿カあ阿カ'
+        @order_pay_form.valid?
+        expect(@order_pay_form.errors.full_messages).to include("Postal code is invalid. Include hyphen(-)")
+      end
+
+      it '郵便番号が英字のみでは登録できない。' do
+        @order_pay_form.postal_code = 'AAAaaa'
+        @order_pay_form.valid?
+        expect(@order_pay_form.errors.full_messages).to include("Postal code is invalid. Include hyphen(-)")
+      end
+
+      it '郵便番号が英数混合では登録できない。' do
+        @order_pay_form.postal_code = 'AAaa11１１'
+        @order_pay_form.valid?
+        expect(@order_pay_form.errors.full_messages).to include("Postal code is invalid. Include hyphen(-)")
+      end
+
       it '都道府県の入力が無い。' do
         @order_pay_form.prefecture_id = 1
         @order_pay_form.valid?
@@ -86,6 +104,24 @@ RSpec.describe OrderPayForm, type: :model do
 
       it '電話番号は11桁以内。' do
         @order_pay_form.phone_number = "090123456789123"
+        @order_pay_form.valid?
+        expect(@order_pay_form.errors.full_messages).to include("Phone number is invalid")
+      end
+
+      it '電話番号が漢字・ひらがな・カタカナでは登録できない。' do
+        @order_pay_form.phone_number = 'あ阿カあ阿カ'
+        @order_pay_form.valid?
+        expect(@order_pay_form.errors.full_messages).to include("Phone number is invalid")
+      end
+
+      it '電話番号が英字のみでは登録できない。' do
+        @order_pay_form.phone_number = 'AAAaaa'
+        @order_pay_form.valid?
+        expect(@order_pay_form.errors.full_messages).to include("Phone number is invalid")
+      end
+
+      it '電話番号が英数混合では登録できない。' do
+        @order_pay_form.phone_number = 'AAaa11１１'
         @order_pay_form.valid?
         expect(@order_pay_form.errors.full_messages).to include("Phone number is invalid")
       end
