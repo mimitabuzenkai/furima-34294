@@ -20,6 +20,7 @@ class Item < ApplicationRecord
   }
 
   belongs_to :user
+  has_one :order
   has_one_attached :image
 
   extend ActiveHash::Associations::ActiveRecordExtensions
@@ -28,6 +29,4 @@ class Item < ApplicationRecord
   belongs_to_active_hash :delivery_charge
   belongs_to_active_hash :prefecture
   belongs_to_active_hash :scheduled_delivery
-  
-
 end

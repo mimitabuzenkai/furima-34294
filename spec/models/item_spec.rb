@@ -9,6 +9,7 @@ RSpec.describe Item, type: :model do
     context '商品が出品できるとき' do
 
       it '商品画像の選択が必須' do
+        
         expect(@item).to be_valid
       end
 
@@ -98,7 +99,7 @@ RSpec.describe Item, type: :model do
       it '配達料の選択が無いと登録できない' do
         @item.delivery_charge_id = 1
         @item.valid?
-        expect(@item.errors.full_messages).to include("Scheduled delivery must be other than 1")
+        expect(@item.errors.full_messages).to include("Delivery charge must be other than 1")
       end
 
       it '発送日数の選択が無いと登録できない' do

@@ -71,3 +71,7 @@ gem 'mini_magick'
 gem 'image_processing', '~> 1.2'
 
 gem 'active_hash'
+
+gem 'composite_primary_keys'
+
+gem 'payjp'

@@ -7,5 +7,6 @@ class DeliveryCharge < ActiveHash::Base
   
   include ActiveHash::Associations
   has_many :items
+  has_many :orders
   
 end  
