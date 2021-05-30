@@ -9,7 +9,6 @@ RSpec.describe Item, type: :model do
     context '商品が出品できるとき' do
 
       it '商品画像の選択が必須' do
-        
         expect(@item).to be_valid
       end
 

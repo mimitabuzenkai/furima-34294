@@ -83,7 +83,7 @@ RSpec.describe OrderPayForm, type: :model do
         @order_pay_form.valid?
         expect(@order_pay_form.errors.full_messages).to include("Prefecture must be other than 1")
       end
-      
+
       it '市区町村の入力が無い。' do
         @order_pay_form.city = ""
         @order_pay_form.valid?
