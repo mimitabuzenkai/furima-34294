@@ -8,6 +8,5 @@ window.addEventListener('load', function(){
     const inputValue = priceInput.value;
     priceTax.innerHTML = (Math.floor(inputValue * 0.1));
     profit.innerHTML = (Math.floor(inputValue * 0.9));
-     
   });
 });
