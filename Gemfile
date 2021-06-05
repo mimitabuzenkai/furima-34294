@@ -72,3 +72,5 @@ gem 'active_hash'
 gem 'composite_primary_keys'
 
 gem 'payjp'
+
+gem "aws-sdk-s3", require: false
